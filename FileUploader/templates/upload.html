@@ -1,0 +1,13 @@
+<h1> uplaod</h1>
+
+<form action="{% url 'upload' %}" enctype="multipart/form-data" method="POST">
+    {% csrf_token %}
+    <input type="file" name="document" id="">
+    <button type="submit">uplaod file</button>
+</form>
+
+{% if url %}
+    <P>UPLOADED FILE : <a href="{{ url }}">{{ url }}</a></P>
+{% else %}
+ <p>You Have not uploaded a file yet</p>
+{% endif %}
