@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block content %}
+        <h1>Book list</h1>
+    <a href="{% url 'book_upload' %}" class="btn btn-info">add book</a>
+    <table class="table table-hover  m-2">
+        <thead>
+            <tr>
+                <th scope="col">Cover</th>
+                <th scope="col">Title</th>
+                <th scope="col">Author</th>
+                <th scope="col">Download</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for book in books %}
+            <tr>
+                <th>
+                    {% if book.cover %}
+                        <img src="/upload{{ book.cover.url}}" style="width: 70px; height: 60px; border-radius: 50%;">
+                    {% else %}
+                        <p class="text-muted">No cover</p>
+                    {% endif %}
+                </th>
+                <td>{{ book.title }}</td>
+                <td>{{ book.author }}</td>
+                <td>
+                    <a class="btn btn-info" href="/upload{{ book.pdf.url }}" target="_blank" rel="noopener noreferrer">Download</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
+
